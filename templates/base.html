@@ -21,10 +21,14 @@
     {% endblock %}
 
     <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="static/bootstrap.min.css">
+    <link rel="stylesheet" href={{ url_for("static", filename="bootstrap.min.css") }}>
 
     <!-- Custom styles for this template -->
-    <link href="static/navbar-fixed-top.css" rel="stylesheet">
+    <link rel="stylesheet" href={{ url_for("static", filename="navbar-fixed-top.css") }}>
+
+    <script type="text/javascript"
+      src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+    </script>
 
     {% block head_extra %}
     {% endblock %}
@@ -38,7 +42,8 @@
 
   <!-- Fixed navbar -->
   <nav class="navbar navbar-inverse navbar-fixed-top">
-    <div class="container">
+    <!-- <div class="container"> -->
+    <div class="container-fluid">
       <div class="navbar-header">
         <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
           <span class="sr-only">Toggle navigation</span>
@@ -55,9 +60,9 @@
         </ul>
 
         <ul class="nav navbar-nav navbar-right">
-	  {{ nav_link('index', 'Home') }}
-	  {{ nav_link('parameters', 'Parameters') }}
-	  {{ nav_link('distances', 'Distances') }}
+	  <li class="{% block index_nav_active %}{% endblock %}"><a href="{{ url_for('index') }}">Home</a></li>
+	  <li class="{% block parameters_nav_active %}{% endblock %}"><a href="{{ url_for('parameters') }}">Parameters</a></li>
+	  <li class="{% block distances_nav_active %}{% endblock %}"><a href="{{ url_for('distances') }}">Distances</a></li>
         </ul>
 
       </div><!--/.nav-collapse -->
@@ -79,7 +84,7 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 
   <!-- Include all compiled plugins (below), or include individual files as needed -->
-  <script src="static/bootstrap.min.js"></script>
+  <script src="/static/bootstrap.min.js"></script>
 
 </body>
 
